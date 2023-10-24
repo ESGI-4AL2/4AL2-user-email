@@ -29,4 +29,4 @@ jobs:
           npm ci
       - name: Build
         run: |
-          cd backend
+          npm run build
