@@ -22,4 +22,22 @@ export class User {
 		address: ${this.address.toString()}
 		`;
 	}
+
+	get _name(): string {
+		return this.name;
+	}
+
+	get _lastName(): string {
+		return this.lastName;
+	}
+
+	get _address(): Address {
+		return this.address;
+	}
+
+	get _age(): number {
+		return this.age;
+	}
+
+
 }
