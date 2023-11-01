@@ -1,18 +1,17 @@
-import {Address} from "./Adress";
-import {IAddress} from "./IAddress";
+import { Address } from './Adress';
+import { IAddress } from './IAddress';
 
 export class AddressBuilder implements IAddress {
-
-	private  streetName: string;
-	private  streetNumber: number;
-	private  city: string;
-	private  zipCode: string;
+	private streetName: string;
+	private streetNumber: number;
+	private city: string;
+	private zipCode: string;
 
 	static create(): AddressBuilder {
 		return new AddressBuilder();
 	}
 
-	withStreetNumner(streetNumber: number): AddressBuilder {
+	withStreetNumber(streetNumber: number): AddressBuilder {
 		var addressBuilder: AddressBuilder = new AddressBuilder();
 		addressBuilder.city = this.city;
 		addressBuilder.streetName = this.streetName;
@@ -30,7 +29,7 @@ export class AddressBuilder implements IAddress {
 	}
 	withCity(city: string): AddressBuilder {
 		if (city === null || city.trim() === '') {
-			throw new Error('invalide city argument');
+			throw new Error('Invalid city argument');
 		}
 		var addressBuilder: AddressBuilder = new AddressBuilder();
 		addressBuilder.city = city;
@@ -42,7 +41,7 @@ export class AddressBuilder implements IAddress {
 
 	withStreetName(streetName: string): AddressBuilder {
 		if (streetName === null || streetName.trim() === '') {
-			throw new Error('invalide streetName argument');
+			throw new Error('Invalid streetName argument');
 		}
 		var addressBuilder: AddressBuilder = new AddressBuilder();
 		addressBuilder.city = this.city;
@@ -55,5 +54,4 @@ export class AddressBuilder implements IAddress {
 	build(): Address {
 		return new Address(this.streetName, this.streetNumber, this.city, this.zipCode);
 	}
-
 }
