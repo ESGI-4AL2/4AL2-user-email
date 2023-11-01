@@ -7,6 +7,7 @@ export class UserBuilder implements IUserBuilder {
 	private lastName: string;
 	private address: Address;
 	private age: number;
+	private email: string;
 
 	static create(): UserBuilder {
 		return new UserBuilder();
@@ -60,7 +61,23 @@ export class UserBuilder implements IUserBuilder {
 		return userBuilder;
 	}
 
+	withEmail(email: string): UserBuilder {
+		const isEmail = /\S+@\S+\.\S+/.test(email);
+		if (!isEmail) {
+			throw new Error('Invalid email argument');
+		}
+
+		const userBuilder = new UserBuilder();
+		userBuilder.address = this.address;
+		userBuilder.age = this.age;
+		userBuilder.lastName = this.lastName;
+		userBuilder.name = this.name;
+		userBuilder.email = email;
+
+		return userBuilder;
+	}
+
 	build(): User {
-		return User.of(this.name, this.lastName, this.address, this.age);
+		return User.of(this.name, this.lastName, this.address, this.age, this.email);
 	}
 }

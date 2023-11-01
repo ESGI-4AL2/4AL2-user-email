@@ -9,6 +9,7 @@ describe('UserBuilder', () => {
 			.withLastName('Toto')
 			.withAge(30)
 			.withAddress(Address.of('mail atlantis', 6, 'Massy', '91300'))
+			.withEmail('toto@example.com')
 			.build();
 
 		expect(user).toBeInstanceOf(User);
@@ -16,6 +17,7 @@ describe('UserBuilder', () => {
 		expect(user.lastName).toBe('Toto');
 		expect(user.age).toBe(30);
 		expect(user.address).toEqual(Address.of('mail atlantis', 6, 'Massy', '91300'));
+		expect(user.email).toBe('toto@example.com');
 	});
 
 	it('should be different', () => {

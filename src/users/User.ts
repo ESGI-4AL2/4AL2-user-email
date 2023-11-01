@@ -5,16 +5,18 @@ export class User {
 	private readonly _lastName: string;
 	private readonly _address: Address;
 	private readonly _age: number;
+	private readonly _email: string;
 
-	private constructor(firstName: string, lastName: string, address: Address, age: number) {
+	private constructor(firstName: string, lastName: string, address: Address, age: number, email: string) {
 		this._firstName = firstName;
 		this._lastName = lastName;
 		this._address = address;
 		this._age = age;
+		this._email = email;
 	}
 
-	static of(firstName: string, lastName: string, address: Address, age: number): User {
-		return new User(firstName, lastName, address, age);
+	static of(firstName: string, lastName: string, address: Address, age: number, email: string): User {
+		return new User(firstName, lastName, address, age,email);
 	}
 
 	toString(): string {
@@ -40,5 +42,9 @@ export class User {
 
 	get age(): number {
 		return this._age;
+	}
+
+	get email(): string {
+		return this._email;
 	}
 }
