@@ -20,6 +20,7 @@ export class AddressBuilder implements IAddressBuilder {
 
 		return addressBuilder;
 	}
+
 	withZipCode(zipCode: string): AddressBuilder {
 		const addressBuilder = new AddressBuilder();
 		addressBuilder.city = this.city;
@@ -29,6 +30,7 @@ export class AddressBuilder implements IAddressBuilder {
 
 		return addressBuilder;
 	}
+
 	withCity(city: string): AddressBuilder {
 		if (!city.trim()) {
 			throw new Error('Invalid city argument');
@@ -58,6 +60,6 @@ export class AddressBuilder implements IAddressBuilder {
 	}
 
 	build(): Address {
-		return new Address(this.streetName, this.streetNumber, this.city, this.zipCode);
+		return Address.of(this.streetName, this.streetNumber, this.city, this.zipCode);
 	}
 }

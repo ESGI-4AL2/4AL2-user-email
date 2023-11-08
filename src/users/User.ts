@@ -6,11 +6,15 @@ export class User {
 	private readonly _address: Address;
 	private readonly _age: number;
 
-	constructor(firstName: string, lastName: string, address: Address, age: number) {
+	private constructor(firstName: string, lastName: string, address: Address, age: number) {
 		this._firstName = firstName;
 		this._lastName = lastName;
 		this._address = address;
 		this._age = age;
+	}
+
+	static of(firstName: string, lastName: string, address: Address, age: number): User {
+		return new User(firstName, lastName, address, age);
 	}
 
 	toString(): string {

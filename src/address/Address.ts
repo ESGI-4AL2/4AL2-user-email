@@ -4,15 +4,20 @@ export class Address {
 	private readonly _city: string;
 	private readonly _zipCode: string;
 
-	constructor(streetName: string, streetNumber: number, city: string, zipCode: string) {
+	private constructor(streetName: string, streetNumber: number, city: string, zipCode: string) {
 		this._streetNumber = streetNumber;
 		this._streetName = streetName;
 		this._city = city;
+		this._zipCode = zipCode;
+	}
 
-		if (zipCode && !/^\d{5}$/.test(zipCode)) {
+	static of(streetName: string, streetNumber: number, city: string, zipCode: string): Address {
+		const isOnlyFiveDigits = /^\d{5}$/.test(zipCode);
+		if (!isOnlyFiveDigits) {
 			throw new Error('Invalid zipCode argument');
 		}
-		this._zipCode = zipCode;
+
+		return new Address(streetName, streetNumber, city, zipCode);
 	}
 
 	get streetName(): string {

@@ -25,6 +25,7 @@ export class UserBuilder implements IUserBuilder {
 
 		return userBuilder;
 	}
+
 	withLastName(lastName: string): UserBuilder {
 		if (!lastName.trim()) {
 			throw new Error('invalide lastName argument ');
@@ -38,6 +39,7 @@ export class UserBuilder implements IUserBuilder {
 
 		return userBuilder;
 	}
+
 	withAge(age: number): UserBuilder {
 		const userBuilder = new UserBuilder();
 		userBuilder.address = this.address;
@@ -47,6 +49,7 @@ export class UserBuilder implements IUserBuilder {
 
 		return userBuilder;
 	}
+
 	withAddress(address: Address): UserBuilder {
 		const userBuilder = new UserBuilder();
 		userBuilder.address = address;
@@ -58,6 +61,6 @@ export class UserBuilder implements IUserBuilder {
 	}
 
 	build(): User {
-		return new User(this.name, this.lastName, this.address, this.age);
+		return User.of(this.name, this.lastName, this.address, this.age);
 	}
 }

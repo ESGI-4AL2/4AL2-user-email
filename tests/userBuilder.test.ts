@@ -8,14 +8,14 @@ describe('UserBuilder', () => {
 			.withFirstName('Toto')
 			.withLastName('Toto')
 			.withAge(30)
-			.withAddress(new Address('mail atlantis', 6, 'Massy', '91300'))
+			.withAddress(Address.of('mail atlantis', 6, 'Massy', '91300'))
 			.build();
 
 		expect(user).toBeInstanceOf(User);
 		expect(user.firstName).toBe('Toto');
 		expect(user.lastName).toBe('Toto');
 		expect(user.age).toBe(30);
-		expect(user.address).toEqual(new Address('mail atlantis', 6, 'Massy', '91300'));
+		expect(user.address).toEqual(Address.of('mail atlantis', 6, 'Massy', '91300'));
 	});
 
 	it('should be different', () => {
