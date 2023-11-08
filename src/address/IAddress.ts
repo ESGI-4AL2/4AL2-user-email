@@ -1,5 +1,5 @@
 import { AddressBuilder } from './AddressBuilder';
-import { Address } from './Adress';
+import { Address } from './Address';
 
 export interface IAddress {
 	withStreetName(streetName: string): AddressBuilder;

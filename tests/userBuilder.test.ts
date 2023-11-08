@@ -1,4 +1,4 @@
-import { Address } from '../src/address/Adress';
+import { Address } from '../src/address/Address';
 import { User } from '../src/users/User';
 import { UserBuilder } from '../src/users/UserBuilder';
 

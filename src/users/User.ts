@@ -1,4 +1,4 @@
-import {Address} from "../address/Adress";
+import {Address} from "../address/Address";
 
 export class User {
 	private readonly name: string;

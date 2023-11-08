@@ -1,4 +1,4 @@
-import {Address} from "../address/Adress";
+import {Address} from "../address/Address";
 import {User} from "./User";
 import {UserBuilder} from "./UserBuilder";
 

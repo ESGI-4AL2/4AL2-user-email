@@ -1,4 +1,4 @@
-import {Address} from "../address/Adress";
+import {Address} from "../address/Address";
 import {IUserBuilder} from "./IUserBuilder";
 import {User} from "./User";
 
@@ -18,7 +18,7 @@ export class UserBuilder implements IUserBuilder {
 		if (firstName === null || firstName.trim() === '') {
 			throw new Error('invalide name argument ');
 		}
-		
+
 		var userBuilder: UserBuilder = new UserBuilder();
 		userBuilder.address = this.address;
 		userBuilder.age = this.age;

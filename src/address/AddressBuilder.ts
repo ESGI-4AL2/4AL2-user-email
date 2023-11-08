@@ -1,4 +1,4 @@
-import { Address } from './Adress';
+import { Address } from './Address';
 import { IAddress } from './IAddress';
 
 export class AddressBuilder implements IAddress {
