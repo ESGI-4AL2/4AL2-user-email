@@ -11,10 +11,10 @@ describe('AddressBuilder', () => {
 			.build();
 
 		expect(address).toBeInstanceOf(Address);
-		expect(address._streetName).toBe('Main Street');
-		expect(address._streetNumber).toBe(123);
-		expect(address._city).toBe('Springfield');
-		expect(address._zipCode).toBe('12345');
+		expect(address.streetName).toBe('Main Street');
+		expect(address.streetNumber).toBe(123);
+		expect(address.city).toBe('Springfield');
+		expect(address.zipCode).toBe('12345');
 	});
 
 	it('should create distinct addresses', () => {
@@ -22,7 +22,7 @@ describe('AddressBuilder', () => {
 
 		const address2 = AddressBuilder.create().withStreetName('Fifth Avenue').withCity('Metropolis').build();
 
-		expect(address1._city).not.toEqual(address2._city);
+		expect(address1.city).not.toEqual(address2.city);
 	});
 
 	it('should throw an error with invalid zip code', () => {
@@ -39,7 +39,7 @@ describe('AddressBuilder', () => {
 
 	it('should throw an error with invalid street name', () => {
 		expect(() => {
-			AddressBuilder.create().withStreetName(null).build();
+			AddressBuilder.create().withStreetName('').build();
 		}).toThrowError('Invalid streetName argument');
 	});
 });

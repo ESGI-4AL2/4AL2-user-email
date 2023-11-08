@@ -1,10 +1,9 @@
-import { AddressBuilder } from './AddressBuilder';
 import { Address } from './Address';
 
-export interface IAddress {
-	withStreetNumber(streetNumber: number): AddressBuilder;
-	withStreetName(streetName: string): AddressBuilder;
-	withZipCode(zipCode: string): AddressBuilder;
-	withCity(city: string): AddressBuilder;
+export interface IAddressBuilder {
+	withStreetNumber(streetNumber: number): IAddressBuilder;
+	withStreetName(streetName: string): IAddressBuilder;
+	withZipCode(zipCode: string): IAddressBuilder;
+	withCity(city: string): IAddressBuilder;
 	build(): Address;
 }

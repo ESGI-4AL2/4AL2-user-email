@@ -1,43 +1,40 @@
-import {Address} from "../address/Address";
+import { Address } from '../address/Address';
 
 export class User {
-	private readonly name: string;
-	private readonly lastName: string;
-	private readonly address: Address;
-	private readonly age: number;
+	private readonly _firstName: string;
+	private readonly _lastName: string;
+	private readonly _address: Address;
+	private readonly _age: number;
 
-
-	constructor (name: string, lastName: string, address: Address, age: number) {
-		this.name = name;
-		this.lastName = lastName;
-		this.address = address;
-		this.age = age;
+	constructor(firstName: string, lastName: string, address: Address, age: number) {
+		this._firstName = firstName;
+		this._lastName = lastName;
+		this._address = address;
+		this._age = age;
 	}
 
 	toString(): string {
 		return `
-		name: ${this.name}
-		lastName: ${this.lastName}
-		age: ${this.age}
-		address: ${this.address.toString()}
+			name: ${this._firstName}
+			lastName: ${this._lastName}
+			age: ${this._age}
+			address: ${this._address.toString()}
 		`;
 	}
 
-	get _name(): string {
-		return this.name;
+	get firstName(): string {
+		return this._firstName;
 	}
 
-	get _lastName(): string {
-		return this.lastName;
+	get lastName(): string {
+		return this._lastName;
 	}
 
-	get _address(): Address {
-		return this.address;
+	get address(): Address {
+		return this._address;
 	}
 
-	get _age(): number {
-		return this.age;
+	get age(): number {
+		return this._age;
 	}
-
-
 }

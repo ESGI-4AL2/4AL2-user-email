@@ -1,41 +1,42 @@
 export class Address {
-	private readonly streetName: string;
-	private readonly streetNumber: number;
-	private readonly city: string;
-	private readonly zipCode: string;
+	private readonly _streetNumber: number;
+	private readonly _streetName: string;
+	private readonly _city: string;
+	private readonly _zipCode: string;
 
 	constructor(streetName: string, streetNumber: number, city: string, zipCode: string) {
-		this.city = city;
-		this.streetName = streetName;
-		this.streetNumber = streetNumber;
+		this._streetNumber = streetNumber;
+		this._streetName = streetName;
+		this._city = city;
 
 		if (zipCode && !/^\d{5}$/.test(zipCode)) {
 			throw new Error('Invalid zipCode argument');
 		}
-		this.zipCode = zipCode;
+		this._zipCode = zipCode;
 	}
 
-	get _streetName(): string {
-		return this.streetName;
+	get streetName(): string {
+		return this._streetName;
 	}
 
-	get _city(): string {
-		return this.city;
+	get city(): string {
+		return this._city;
 	}
 
-	get _zipCode(): string {
-		return this.zipCode;
+	get zipCode(): string {
+		return this._zipCode;
 	}
 
-	get _streetNumber(): number {
-		return this.streetNumber;
+	get streetNumber(): number {
+		return this._streetNumber;
 	}
 
 	toString(): string {
 		return `
-			streetName: ${this.streetName}
-			streetNumber: ${this.streetNumber}
-			city: ${this.city}
-			zipCode: ${this.zipCode}		`;
+			streetName: ${this._streetName}
+			streetNumber: ${this._streetNumber}
+			city: ${this._city}
+			zipCode: ${this._zipCode}
+		`;
 	}
 }
