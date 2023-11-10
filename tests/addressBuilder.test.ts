@@ -18,9 +18,16 @@ describe('AddressBuilder', () => {
 	});
 
 	it('should create distinct addresses', () => {
-		const address1 = AddressBuilder.create().withStreetName('Elm Street').withCity('Gotham').build();
-
-		const address2 = AddressBuilder.create().withStreetName('Fifth Avenue').withCity('Metropolis').build();
+		const address1 = AddressBuilder.create()
+			.withStreetName('Elm Street')
+			.withCity('Gotham')
+			.withZipCode('11111')
+			.build();
+		const address2 = AddressBuilder.create()
+			.withStreetName('Fifth Avenue')
+			.withCity('Metropolis')
+			.withZipCode('22222')
+			.build();
 
 		expect(address1.city).not.toEqual(address2.city);
 	});
