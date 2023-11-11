@@ -10,10 +10,7 @@ export class UserService implements IUserService {
 		private readonly userRegistry: IUserRegistry,
 	) {}
 
-	// async createUser(name: string, lastName: string, address: Address, age: number, email: string): Promise<User> {
 	async create(user: User): Promise<null | User> {
-		// const newUser = User.of(name, lastName, address, age, email);
-
 		try {
 			if (await this.userRegistry.hasUserByEmail(user.email)) {
 				throw new Error(`User ${user.email} already exists)`);

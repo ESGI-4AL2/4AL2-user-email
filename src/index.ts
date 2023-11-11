@@ -8,4 +8,4 @@ AppBuilder.create()
 	.build()
 	.start()
 	.then(() => {})
-	.catch((err) => console.error('❌ Erreur : ' + err.message));
+	.catch((err) => console.error(`❌ Erreur : ${err.message}`));
