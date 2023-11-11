@@ -9,7 +9,7 @@ export class App {
 		this._userService = userService;
 	}
 
-	static of(userService: IUserService) {
+	static of(userService: IUserService): App {
 		return new App(userService);
 	}
 
@@ -20,13 +20,13 @@ export class App {
 		await this.printAllUsers();
 	}
 
-	private async printAllUsers() {
+	private async printAllUsers(): Promise<void> {
 		const users = await this._userService.getAll();
 
 		console.log(`\n🧾 Actuellement ${users.length} utilisateur(s) : ${users}\n`);
 	}
 
-	private async createSomeUsers() {
+	private async createSomeUsers(): Promise<void> {
 		console.log('⏳ Création de quelques utilisateurs...\n');
 
 		const user1 = UserBuilder.create()
