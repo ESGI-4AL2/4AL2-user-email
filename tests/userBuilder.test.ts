@@ -1,6 +1,6 @@
-import { Address } from '../src/address/Address';
-import { User } from '../src/users/User';
-import { UserBuilder } from '../src/users/UserBuilder';
+import { Address } from '../src/app/address/Address';
+import { User } from '../src/app/users/User';
+import { UserBuilder } from '../src/app/users/UserBuilder';
 
 describe('UserBuilder', () => {
 	it('should create a user with the specified attributes', () => {
