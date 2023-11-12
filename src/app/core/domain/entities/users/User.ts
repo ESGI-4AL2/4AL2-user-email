@@ -27,7 +27,8 @@ export class User {
 			name: ${this._firstName}
 			lastName: ${this._lastName}
 			age: ${this._age}
-			address: ${this._address.toString()}
+			address: ${this._address}
+			email: ${this._email}
 		`;
 	}
 

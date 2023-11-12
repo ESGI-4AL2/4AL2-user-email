@@ -2,6 +2,8 @@ import { IUserService } from './core/services/user/IUserService';
 import { UserBuilder } from './core/domain/entities/users/UserBuilder';
 import { AddressBuilder } from './core/domain/entities/address/AddressBuilder';
 import { GuidService } from './core/services/guid/GuidService';
+import { userData } from '../data/users';
+import { User } from './core/domain/entities/users/User';
 
 export class App {
 	private readonly _userService: IUserService;
@@ -19,8 +21,27 @@ export class App {
 	async start(): Promise<void> {
 		console.log("🚀 Démarrage de l'appli !\n");
 
-		await this.createSomeUsers();
+		await this.createSomeUsers(userData);
 		await this.printAllUsers();
+
+		const initialFirstUser = userData[0];
+		await this.printFirstInitialUser(initialFirstUser);
+		await this.deleteUser(initialFirstUser);
+		await this.printAllUsers();
+	}
+
+	private async createSomeUsers(userData: User[]): Promise<void> {
+		console.log('⏳ Création de quelques utilisateurs...\n');
+
+		for (const userDatum of userData) {
+			await this._userService.create(userDatum);
+		}
+	}
+
+	private async deleteUser(user: User): Promise<void> {
+		console.log(`␡ Suppression de ce 1er utilisateur "${user.email}".\n`);
+
+		await this._userService.deleteByEmail(user.email);
 	}
 
 	private async printAllUsers(): Promise<void> {
@@ -29,40 +50,9 @@ export class App {
 		console.log(`\n🧾 Actuellement ${users.length} utilisateur(s) : ${users}\n`);
 	}
 
-	private async createSomeUsers(): Promise<void> {
-		console.log('⏳ Création de quelques utilisateurs...\n');
+	private async printFirstInitialUser(user: User): Promise<void> {
+		const retrievedUser = await this._userService.getByEmail(user.email);
 
-		const user1 = UserBuilder.create()
-			.withFirstName('ARNAUD')
-			.withLastName('Alex')
-			.withAge(11)
-			.withAddress(
-				AddressBuilder.create()
-					.withStreetNumber(1)
-					.withStreetName('rue du Printemps')
-					.withCity('Paris')
-					.withZipCode('75001')
-					.build(),
-			)
-			.withEmail('a.arnaud@email.fr')
-			.build(this._guidService);
-
-		const user2 = UserBuilder.create()
-			.withFirstName('BERNARD')
-			.withLastName('Bob')
-			.withAge(22)
-			.withAddress(
-				AddressBuilder.create()
-					.withStreetNumber(2)
-					.withStreetName('rue du fer')
-					.withCity('Paris')
-					.withZipCode('75002')
-					.build(),
-			)
-			.withEmail('b.bernard@email.fr')
-			.build(this._guidService);
-
-		await this._userService.create(user1);
-		await this._userService.create(user2);
+		console.log(`🙂 1er utilisateur initial : ${retrievedUser}\n`);
 	}
 }
