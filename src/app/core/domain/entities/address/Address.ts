@@ -38,10 +38,9 @@ export class Address {
 
 	toString(): string {
 		return `
-			streetName: ${this._streetName}
-			streetNumber: ${this._streetNumber}
-			city: ${this._city}
-			zipCode: ${this._zipCode}
-		`;
+				streetName: ${this._streetName}
+				streetNumber: ${this._streetNumber}
+				city: ${this._city}
+				zipCode: ${this._zipCode}`;
 	}
 }
