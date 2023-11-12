@@ -1,8 +1,8 @@
-import { Address } from '../src/app/address/Address';
-import { User } from '../src/app/users/User';
-import { UserBuilder } from '../src/app/users/UserBuilder';
-import { IGuidService } from '../src/app/services/guid/IGuidService';
-import { GuidService } from '../src/app/services/guid/GuidService';
+import { Address } from '../src/app/core/domain/entities/address/Address';
+import { User } from '../src/app/core/domain/entities/users/User';
+import { UserBuilder } from '../src/app/core/domain/entities/users/UserBuilder';
+import { IGuidService } from '../src/app/core/services/guid/IGuidService';
+import { GuidService } from '../src/app/core/services/guid/GuidService';
 
 describe('UserBuilder', () => {
 	let guidService: IGuidService;

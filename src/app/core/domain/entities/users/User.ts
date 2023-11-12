@@ -1,5 +1,5 @@
 import { Address } from '../address/Address';
-import { GuidService } from '../services/guid/GuidService';
+import { GuidService } from '../../../services/guid/GuidService';
 
 export class User {
 	private readonly _id: string;

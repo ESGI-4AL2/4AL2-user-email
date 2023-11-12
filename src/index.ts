@@ -1,8 +1,8 @@
-import { UserService } from './app/services/user/UserService';
-import { FakeNotificationService } from './app/services/notification/FakeNotification';
-import { FakeUserRegistry } from './app/adapters/FakeUserRegistry';
+import { UserService } from './app/core/services/user/UserService';
+import { FakeNotificationService } from './app/core/services/notification/FakeNotification';
+import { FakeUserRegistry } from './app/adapters/fake/FakeUserRegistry';
 import { AppBuilder } from './app/AppBuilder';
-import { GuidService } from './app/services/guid/GuidService';
+import { GuidService } from './app/core/services/guid/GuidService';
 
 AppBuilder.create()
 	.withGuidService(new GuidService())

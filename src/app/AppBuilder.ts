@@ -1,6 +1,6 @@
 import { App } from './App';
-import { IUserService } from './services/user/IUserService';
-import { IGuidService } from './services/guid/IGuidService';
+import { IUserService } from './core/services/user/IUserService';
+import { IGuidService } from './core/services/guid/IGuidService';
 
 export class AppBuilder {
 	private _userService: IUserService;

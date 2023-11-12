@@ -1,5 +1,5 @@
-import { IUserRegistry } from './IUserRegistry';
-import { User } from '../users/User';
+import { IUserRegistry } from '../interfaces/IUserRegistry';
+import { User } from '../../core/domain/entities/users/User';
 
 export class FakeUserRegistry implements IUserRegistry {
 	private readonly _users = new Map<string, User>();

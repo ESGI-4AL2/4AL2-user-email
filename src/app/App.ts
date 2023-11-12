@@ -1,7 +1,7 @@
-import { IUserService } from './services/user/IUserService';
-import { UserBuilder } from './users/UserBuilder';
-import { AddressBuilder } from './address/AddressBuilder';
-import { GuidService } from './services/guid/GuidService';
+import { IUserService } from './core/services/user/IUserService';
+import { UserBuilder } from './core/domain/entities/users/UserBuilder';
+import { AddressBuilder } from './core/domain/entities/address/AddressBuilder';
+import { GuidService } from './core/services/guid/GuidService';
 
 export class App {
 	private readonly _userService: IUserService;

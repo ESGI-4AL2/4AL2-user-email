@@ -1,7 +1,7 @@
 import { Address } from '../address/Address';
 import { IUserBuilder } from './IUserBuilder';
 import { User } from './User';
-import { IGuidService } from '../services/guid/IGuidService';
+import { IGuidService } from '../../../services/guid/IGuidService';
 
 export class UserBuilder implements IUserBuilder {
 	private name: string;

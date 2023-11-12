@@ -1,23 +1,26 @@
-import { User } from '../../users/User';
+import { User } from '../../domain/entities/users/User';
 import { INotificationService } from '../notification/INotificationService';
-import { Address } from '../../address/Address';
-import { IUserRegistry } from '../../adapters/IUserRegistry';
+import { Address } from '../../domain/entities/address/Address';
+import { IUserRegistry } from '../../../adapters/interfaces/IUserRegistry';
 import { IUserService } from './IUserService';
 
 export class UserService implements IUserService {
-	constructor(
-		private readonly notificationService: INotificationService,
-		private readonly userRegistry: IUserRegistry,
-	) {}
+	private readonly _notificationService: INotificationService;
+	private readonly _userRegistry: IUserRegistry;
+
+	constructor(notificationService: INotificationService, userRegistry: IUserRegistry) {
+		this._notificationService = notificationService;
+		this._userRegistry = userRegistry;
+	}
 
 	async create(user: User): Promise<null | User> {
 		try {
-			if (await this.userRegistry.hasUserByEmail(user.email)) {
+			if (await this._userRegistry.hasUserByEmail(user.email)) {
 				throw new Error(`User ${user.email} already exists)`);
 			}
 
-			await this.userRegistry.create(user);
-			await this.notificationService.sendNotification(user.email, 'Votre compte a été créé avec succès !');
+			await this._userRegistry.create(user);
+			await this._notificationService.sendNotification(user.email, 'Votre compte a été créé avec succès !');
 		} catch (e) {
 			console.log(e);
 		}
@@ -29,7 +32,7 @@ export class UserService implements IUserService {
 		let isDeleted = false;
 
 		try {
-			isDeleted = await this.userRegistry.deleteByEmail(email);
+			isDeleted = await this._userRegistry.deleteByEmail(email);
 		} catch (e) {
 			console.log(e);
 		}
@@ -41,7 +44,7 @@ export class UserService implements IUserService {
 		let users: User[] = [];
 
 		try {
-			users = await this.userRegistry.getAll();
+			users = await this._userRegistry.getAll();
 		} catch (e) {
 			console.log(e);
 		}
@@ -53,7 +56,7 @@ export class UserService implements IUserService {
 		let user: null | User = null;
 
 		try {
-			user = await this.userRegistry.getByEmail(email);
+			user = await this._userRegistry.getByEmail(email);
 		} catch (e) {
 			console.log(e);
 		}
@@ -65,7 +68,7 @@ export class UserService implements IUserService {
 		let hasUser = false;
 
 		try {
-			hasUser = await this.userRegistry.hasUserByEmail(email);
+			hasUser = await this._userRegistry.hasUserByEmail(email);
 		} catch (e) {
 			console.log(e);
 		}
@@ -77,7 +80,7 @@ export class UserService implements IUserService {
 		let updatedUser = user;
 
 		try {
-			updatedUser = await this.userRegistry.updateByEmail(email, user);
+			updatedUser = await this._userRegistry.updateByEmail(email, user);
 		} catch (e) {
 			console.log(e);
 		}
