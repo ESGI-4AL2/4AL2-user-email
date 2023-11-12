@@ -2,10 +2,10 @@ import { Address } from './Address';
 import { IAddressBuilder } from './IAddressBuilder';
 
 export class AddressBuilder implements IAddressBuilder {
-	private streetName: string;
-	private streetNumber: number;
-	private city: string;
-	private zipCode: string;
+	private _streetName: string;
+	private _streetNumber: number;
+	private _city: string;
+	private _zipCode: string;
 
 	static create(): AddressBuilder {
 		return new AddressBuilder();
@@ -13,20 +13,20 @@ export class AddressBuilder implements IAddressBuilder {
 
 	withStreetNumber(streetNumber: number): AddressBuilder {
 		const addressBuilder = new AddressBuilder();
-		addressBuilder.city = this.city;
-		addressBuilder.streetName = this.streetName;
-		addressBuilder.streetNumber = streetNumber;
-		addressBuilder.zipCode = this.zipCode;
+		addressBuilder._city = this._city;
+		addressBuilder._streetName = this._streetName;
+		addressBuilder._streetNumber = streetNumber;
+		addressBuilder._zipCode = this._zipCode;
 
 		return addressBuilder;
 	}
 
 	withZipCode(zipCode: string): AddressBuilder {
 		const addressBuilder = new AddressBuilder();
-		addressBuilder.city = this.city;
-		addressBuilder.streetName = this.streetName;
-		addressBuilder.streetNumber = this.streetNumber;
-		addressBuilder.zipCode = zipCode;
+		addressBuilder._city = this._city;
+		addressBuilder._streetName = this._streetName;
+		addressBuilder._streetNumber = this._streetNumber;
+		addressBuilder._zipCode = zipCode;
 
 		return addressBuilder;
 	}
@@ -37,10 +37,10 @@ export class AddressBuilder implements IAddressBuilder {
 		}
 
 		const addressBuilder = new AddressBuilder();
-		addressBuilder.city = city;
-		addressBuilder.streetName = this.streetName;
-		addressBuilder.streetNumber = this.streetNumber;
-		addressBuilder.zipCode = this.zipCode;
+		addressBuilder._city = city;
+		addressBuilder._streetName = this._streetName;
+		addressBuilder._streetNumber = this._streetNumber;
+		addressBuilder._zipCode = this._zipCode;
 
 		return addressBuilder;
 	}
@@ -51,15 +51,15 @@ export class AddressBuilder implements IAddressBuilder {
 		}
 
 		const addressBuilder = new AddressBuilder();
-		addressBuilder.city = this.city;
-		addressBuilder.streetName = streetName;
-		addressBuilder.streetNumber = this.streetNumber;
-		addressBuilder.zipCode = this.zipCode;
+		addressBuilder._city = this._city;
+		addressBuilder._streetName = streetName;
+		addressBuilder._streetNumber = this._streetNumber;
+		addressBuilder._zipCode = this._zipCode;
 
 		return addressBuilder;
 	}
 
 	build(): Address {
-		return Address.of(this.streetName, this.streetNumber, this.city, this.zipCode);
+		return Address.of(this._streetName, this._streetNumber, this._city, this._zipCode);
 	}
 }

@@ -4,10 +4,10 @@ import { AddressBuilder } from './address/AddressBuilder';
 import { GuidService } from './services/guid/GuidService';
 
 export class App {
-	private _userService: IUserService;
+	private readonly _userService: IUserService;
 	private readonly _guidService: GuidService;
 
-	private constructor(readonly guidService: GuidService, readonly userService: IUserService) {
+	private constructor(guidService: GuidService, userService: IUserService) {
 		this._guidService = guidService;
 		this._userService = userService;
 	}
