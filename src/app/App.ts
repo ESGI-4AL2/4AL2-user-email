@@ -1,20 +1,18 @@
 import { IUserService } from './core/services/user/IUserService';
-import { UserBuilder } from './core/domain/entities/users/UserBuilder';
-import { AddressBuilder } from './core/domain/entities/address/AddressBuilder';
-import { GuidService } from './core/services/guid/GuidService';
 import { userData } from '../data/users';
 import { User } from './core/domain/entities/users/User';
+import { IGuidService } from './core/services/guid/IGuidService';
 
 export class App {
 	private readonly _userService: IUserService;
-	private readonly _guidService: GuidService;
+	private readonly _guidService: IGuidService;
 
-	private constructor(guidService: GuidService, userService: IUserService) {
+	private constructor(guidService: IGuidService, userService: IUserService) {
 		this._guidService = guidService;
 		this._userService = userService;
 	}
 
-	static of(guidService: GuidService, userService: IUserService): App {
+	static of(guidService: IGuidService, userService: IUserService): App {
 		return new App(guidService, userService);
 	}
 
