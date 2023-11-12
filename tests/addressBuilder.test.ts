@@ -1,5 +1,5 @@
-import { AddressBuilder } from '../src/app/address/AddressBuilder';
-import { Address } from '../src/app/address/Address';
+import { AddressBuilder } from '../src/app/core/domain/entities/address/AddressBuilder';
+import { Address } from '../src/app/core/domain/entities/address/Address';
 
 describe('AddressBuilder', () => {
 	it('should create an address with the specified attributes', () => {

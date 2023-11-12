@@ -1,16 +1,19 @@
-import { IUserService } from './services/user/IUserService';
-import { UserBuilder } from './users/UserBuilder';
-import { AddressBuilder } from './address/AddressBuilder';
+import { IUserService } from './core/services/user/IUserService';
+import { UserBuilder } from './core/domain/entities/users/UserBuilder';
+import { AddressBuilder } from './core/domain/entities/address/AddressBuilder';
+import { GuidService } from './core/services/guid/GuidService';
 
 export class App {
-	private _userService: IUserService;
+	private readonly _userService: IUserService;
+	private readonly _guidService: GuidService;
 
-	private constructor(readonly userService: IUserService) {
+	private constructor(guidService: GuidService, userService: IUserService) {
+		this._guidService = guidService;
 		this._userService = userService;
 	}
 
-	static of(userService: IUserService): App {
-		return new App(userService);
+	static of(guidService: GuidService, userService: IUserService): App {
+		return new App(guidService, userService);
 	}
 
 	async start(): Promise<void> {
@@ -42,7 +45,7 @@ export class App {
 					.build(),
 			)
 			.withEmail('a.arnaud@email.fr')
-			.build();
+			.build(this._guidService);
 
 		const user2 = UserBuilder.create()
 			.withFirstName('BERNARD')
@@ -57,7 +60,7 @@ export class App {
 					.build(),
 			)
 			.withEmail('b.bernard@email.fr')
-			.build();
+			.build(this._guidService);
 
 		await this._userService.create(user1);
 		await this._userService.create(user2);
