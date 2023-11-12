@@ -18,10 +18,8 @@ export class User {
 		this._email = email;
 	}
 
-	static of(firstName: string, lastName: string, address: Address, age: number, email: string): User {
-		const guidService = new GuidService();
-
-		return new User(guidService.generateGuid(), firstName, lastName, address, age, email);
+	static of(id: string, firstName: string, lastName: string, address: Address, age: number, email: string): User {
+		return new User(id, firstName, lastName, address, age, email);
 	}
 
 	toString(): string {

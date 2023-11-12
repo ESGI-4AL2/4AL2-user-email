@@ -1,6 +1,7 @@
 import { Address } from '../address/Address';
 import { IUserBuilder } from './IUserBuilder';
 import { User } from './User';
+import { IGuidService } from '../services/guid/IGuidService';
 
 export class UserBuilder implements IUserBuilder {
 	private name: string;
@@ -77,7 +78,7 @@ export class UserBuilder implements IUserBuilder {
 		return userBuilder;
 	}
 
-	build(): User {
-		return User.of(this.name, this.lastName, this.address, this.age, this.email);
+	build(guidService: IGuidService): User {
+		return User.of(guidService.generateGuid(), this.name, this.lastName, this.address, this.age, this.email);
 	}
 }
