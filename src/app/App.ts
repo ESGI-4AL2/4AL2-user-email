@@ -19,10 +19,19 @@ export class App {
 	async start(): Promise<void> {
 		console.log("🚀 Démarrage de l'appli !\n");
 
+		if (userData.length == 0) {
+			console.log('Aucune donnée à exploiter...');
+			return;
+		}
+
 		await this.createSomeUsers(userData);
 		await this.printAllUsers();
 
 		const initialFirstUser = userData[0];
+		if (!initialFirstUser) {
+			console.log("L'utilisateur ne peut pas être exploité...");
+			return;
+		}
 		await this.printFirstInitialUser(initialFirstUser);
 		await this.deleteUser(initialFirstUser);
 		await this.printAllUsers();
@@ -37,9 +46,15 @@ export class App {
 	}
 
 	private async deleteUser(user: User): Promise<void> {
-		console.log(`␡ Suppression de ce 1er utilisateur "${user.email}".\n`);
+		const { email } = user;
+		if (!(await this._userService.hasUserByEmail(email))) {
+			console.log(`⛔️ Impossible de supprimer l'utilisateur "${email}".\n`);
+			return;
+		}
 
-		await this._userService.deleteByEmail(user.email);
+		await this._userService.deleteByEmail(email);
+
+		console.log(`␡ L'utilisateur "${email}" a été supprimé.\n`);
 	}
 
 	private async printAllUsers(): Promise<void> {
